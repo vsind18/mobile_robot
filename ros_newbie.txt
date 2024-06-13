@@ -1,0 +1,211 @@
+1. Cai dat ros noetic
+https://robodev.blog/cai-dat-ros-noetic
+2. Cai dat zsh 
+https://itsfoss.com/zsh-ubuntu/?fbclid=IwAR04XDQ4_xrzL2aWlqu5kL9Be64z_3zbN4wh2jVpkHg6jLGceoRlv01vALI_aem_AauFQFvugQ7biktYJjcb7anZNqAJc-mYlhugyXL8EXwibkx9naD1jFLux1ORdckVF4Z8-yoqlI75m_iyRyvsM_9u#customise-zsh-on-ubuntu
+=> cai dat zsh lam mac dinh: chsh -s $(which zsh)
+
+3. Tao 1 package catkin_ws
+mkdir -p ~/catkin_ws/src
+source /opt/ros/noetic/setup.bash(zsh)
+echo "source /opt/ros/noetic/setup.bash(zsh)" >> ~/.bashrc(zshrc)
+cd ~/catkin_ws
+catkin_make
+4. Them goi urdf from solidworks vao src cua catkin_ws
+roslaunch <ten_goi> <ten_file>.launch
+5. Cai dat VS CODE
+https://funix.edu.vn/chia-se-kien-thuc/cach-cai-dat-visual-studio-code-tren-ubuntu/
+6. Them plugins vao urdf
+====lidar====
+ <!-- hokuyo -->
+ <gazebo reference="lidar_link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0.01 0 0.03 0 -0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>640</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.141592</min_angle>
+            <max_angle>3.141592</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>2</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!--Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. --> 
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin 
+      name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+         <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+        <topicName>/scan</topicName>
+        <frameName>lidar_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo> 
+=====diff_control=====
+  <gazebo>
+      <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <legacyMode>false</legacyMode>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40</updateRate>
+        <leftJoint>left_back_wheel_joint</leftJoint>
+        <rightJoint>right_back_wheel_joint</rightJoint>
+        <wheelSeparation>0.454</wheelSeparation>
+        <wheelDiameter>0.145</wheelDiameter>
+        <wheelTorque>10</wheelTorque>
+        <publishTf>1</publishTf>
+        <odometryFrame>odom</odometryFrame>
+        <commandTopic>/cmd_vel</commandTopic>
+        <odometryTopic>/odom</odometryTopic>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <wheelAcceleration>2.8</wheelAcceleration>
+        <publishWheelJointState>true</publishWheelJointState>
+        <publishWheelTF>false</publishWheelTF>
+        <odometrySource>world</odometrySource>
+        <rosDebugLevel>name</rosDebugLevel>
+      </plugin>
+  </gazebo>
+ =======camera=======
+   <!-- camera -->
+  <gazebo reference="webcam_link">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>rrbot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>webcam_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+7.Dieu khien robot
+7.1 RQT
+ rqt --> tools ---> robot steering
+7.2 teleop
+sudo apt-get install ros-noetic-teleop-twist-keyboard
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+8. Hector_slam
+https://github.com/NickL77/RPLidar_Hector_SLAM
+luu_map
+sudo apt-get install ros-noetic-map-server
+rosrun map_server map_saver -f map1
+tao ra 2 file pgm va yaml
+9. Navigation
+amcl
+https://github.com/pratik7229/ROS-Projects.git
+gmcl
+<?xml version="1.0"?>
+<launch>
+ 
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_a" default="0.0"/>
+
+  
+<node pkg="gmcl" type="gmcl" name="gmcl" output="screen">
+  <!-- Publish scans from best pose at a max of 10 Hz -->
+  <remap from="scan" to="/scan"/>
+  
+  <param name="use_optimal_filter" value="true"/>
+  <param name="use_intelligent_filter" value="true"/>
+  <param name="use_self_adaptive" value="true"/> 
+  <param name="use_kld_sampling" value="true"/> 
+  
+  <param name="N_aux_particles" value="10"/>
+  
+  <param name="crossover_alpha" value=".5"/>
+  <param name="mutation_probability" value="0.1"/>
+    
+  <param name="energy_map_resolution_x" value="0.05"/>
+  <param name="energy_map_resolution_y" value="0.05"/>
+  <param name="energy_threshold_value" value="0.05"/>
+  <param name="publish_ser" value="false"/>
+
+  <param name="odom_model_type" value="diff"/> 
+     
+  <param name="initial_pose_x"            value="$(arg initial_pose_x)"/>
+  <param name="initial_pose_y"            value="$(arg initial_pose_y)"/> 
+  <param name="initial_pose_a"            value="$(arg initial_pose_a)"/>
+  
+  <param name="transform_tolerance" value="0.1" />
+  <param name="gui_publish_rate" value="2.0"/>
+  <param name="laser_max_beams" value="30"/>
+  <param name="min_particles" value="500"/>
+  <param name="max_particles" value="2000"/>
+  <param name="kld_err" value="0.01"/>
+  <param name="kld_z" value="0.99"/>
+ 
+  <param name="odom_alpha1" value="0.2"/>
+  <param name="odom_alpha2" value="0.2"/>
+  <param name="odom_alpha3" value="0.8"/>
+  <param name="odom_alpha4" value="0.2"/>
+  <param name="laser_z_hit" value="0.5"/>
+  <param name="laser_z_short" value="0.05"/>
+  <param name="laser_z_max" value="0.05"/>
+  <param name="laser_z_rand" value="0.5"/>
+  <param name="laser_sigma_hit" value="0.2"/>
+  <param name="laser_lambda_short" value="0.1"/>
+     
+  <param name="laser_model_type" value="likelihood_field"/> 
+<!--   <param name="laser_model_type" value="beam"/>  -->
+  <param name="laser_likelihood_max_dist" value="2.5"/>
+  <param name="update_min_d" value="0.2"/>
+  <param name="update_min_a" value="0.5"/>
+
+  <param name="odom_frame_id" value="odom"/>
+  <param name="base_frame_id" value="base_link"/>
+
+  <param name="resample_interval" value="1"/>
+  <param name="transform_tolerance" value="0.1"/>
+  <param name="recovery_alpha_slow" value="0.0"/>
+  <param name="recovery_alpha_fast" value="0.0"/>
+  <param name="selective_resampling" value="false"/> 
+  
+</node>
+</launch>
+
+
+

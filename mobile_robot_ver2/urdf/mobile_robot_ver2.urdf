@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="mobile_robot_ver2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0199023820444629 0.00156115600269726 0.158242555790831"
+        rpy="0 0 0" />
+      <mass
+        value="3.17925951058724" />
+      <inertia
+        ixx="0.0310033295090351"
+        ixy="-1.68807039114303E-05"
+        ixz="-0.00155350349930696"
+        iyy="0.0167134173552006"
+        iyz="8.21066042628579E-06"
+        izz="0.0419701693390444" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.898039215686275 0.898039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="front_caster_Link">
+    <inertial>
+      <origin
+        xyz="0.000635800666714023 -0.00267665579022574 -0.0106896661822148"
+        rpy="0 0 0" />
+      <mass
+        value="0.00163932268239418" />
+      <inertia
+        ixx="1.54345302008237E-07"
+        ixy="-3.46899157633019E-09"
+        ixz="8.08393501275748E-09"
+        iyy="1.68126063874187E-07"
+        iyz="-3.40320742279653E-08"
+        izz="1.81640677459839E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/front_caster_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.686274509803922 0.686274509803922 0.686274509803922 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/front_caster_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_caster_joint"
+    type="continuous">
+    <origin
+      xyz="0.184000272086189 0 -0.00159999999999816"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_caster_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="banh_truoc_link">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 1.73472347597681E-18 -0.00700000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="0.0113625256694897" />
+      <inertia
+        ixx="9.06331517306512E-07"
+        ixy="2.13189172538069E-22"
+        ixz="2.81751557485709E-22"
+        iyy="9.06331517306513E-07"
+        iyz="1.32348898008487E-22"
+        izz="1.43202222816787E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/banh_truoc_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.498039215686275 0.498039215686275 0.498039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/banh_truoc_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banh_truoc_joint"
+    type="continuous">
+    <origin
+      xyz="0.00912155617943253 -0.00811154811768118 -0.0244000000000002"
+      rpy="0.233213827586195 -1.57079631189374 -3.14159265358979" />
+    <parent
+      link="front_caster_Link" />
+    <child
+      link="banh_truoc_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="left_back_wheel">
+    <inertial>
+      <origin
+        xyz="6.93889390390723E-16 -0.0163978831672308 -2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.335246550060458" />
+      <inertia
+        ixx="0.000556427367899459"
+        ixy="-9.7446282608757E-19"
+        ixz="6.26717266613632E-20"
+        iyy="0.00106371956621461"
+        iyz="-8.70165748530884E-19"
+        izz="0.000556427367899459" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/left_back_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.745098039215686 0.745098039215686 0.745098039215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/left_back_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_back_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0810260851278778 0.22731050315573 0.0334999999999994"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_back_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="right_back_wheel">
+    <inertial>
+      <origin
+        xyz="-2.80331313717852E-15 0.0156021168327677 -4.71844785465692E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.335246550060458" />
+      <inertia
+        ixx="0.000556427367899459"
+        ixy="-8.97866418891642E-19"
+        ixz="-1.81471568410149E-20"
+        iyy="0.00106371956621461"
+        iyz="-8.62711709971281E-19"
+        izz="0.00055642736789946" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/right_back_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.745098039215686 0.745098039215686 0.745098039215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/right_back_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0810260851278751 -0.227090307580373 0.0334999999999964"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_back_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+
+  <!--######################################################################-->
+  <gazebo>
+      <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <legacyMode>false</legacyMode>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>40</updateRate>
+        <leftJoint>left_back_wheel_joint</leftJoint>
+        <rightJoint>right_back_wheel_joint</rightJoint>
+        <wheelSeparation>0.454</wheelSeparation>
+        <wheelDiameter>0.145</wheelDiameter>
+        <wheelTorque>10</wheelTorque>
+        <publishTf>1</publishTf>
+        <odometryFrame>odom</odometryFrame>
+        <commandTopic>/cmd_vel</commandTopic>
+        <odometryTopic>/odom</odometryTopic>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <wheelAcceleration>2.8</wheelAcceleration>
+        <publishWheelJointState>true</publishWheelJointState>
+        <publishWheelTF>false</publishWheelTF>
+        <odometrySource>world</odometrySource>
+        <rosDebugLevel>name</rosDebugLevel>
+        <publishOdomTF>true</publishOdomTF> 
+      </plugin>
+  </gazebo>
+ 
+
+  
+
+
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="-0.00676806015122414 9.18826098207821E-05 -0.0219029751317191"
+        rpy="0 0 0" />
+      <mass
+        value="0.170369096773262" />
+      <inertia
+        ixx="7.85144528233466E-05"
+        ixy="-1.02594699797548E-07"
+        ixz="-2.02793883969738E-05"
+        iyy="0.000122718368622727"
+        iyz="3.97473689157688E-07"
+        izz="0.000140428163899051" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="0.011811202904181 0 0.152200000000001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <!-- hokuyo -->
+  <gazebo reference="lidar_link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>100</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>640</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.141592</min_angle>
+            <max_angle>3.141592</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.25</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!--Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. --> 
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin 
+      name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+         <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>true</visualize>
+        <topicName>/scan</topicName>
+        <frameName>lidar_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo> 
+
+
+  <link
+    name="webcam_link">
+    <inertial>
+      <origin
+        xyz="-0.0155157202003091 -0.000126424529679616 0.0115424869626972"
+        rpy="0 0 0" />
+      <mass
+        value="0.0358924440181195" />
+      <inertia
+        ixx="1.28699258264271E-05"
+        ixy="-4.66206664437663E-09"
+        ixz="-7.71903259095074E-10"
+        iyy="4.4907173594424E-06"
+        iyz="-1.0273068440479E-08"
+        izz="1.45272625129289E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/webcam_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mobile_robot_ver2/meshes/webcam_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="webcam_joint"
+    type="prismatic">
+    <origin
+      xyz="0.21999 -0.0011426 0.0589"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="webcam_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+  <!-- camera -->
+  <gazebo reference="webcam_link">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>rrbot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>webcam_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+
+</robot>

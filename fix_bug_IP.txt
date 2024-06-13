@@ -1,0 +1,57 @@
+neu chay roslaunch khong mo cua so gazebo va rviz co the do loi IP
+RLException: Unable to contact my own server at [http://1:46677/].
+This usually means that the network is not configured properly.
+
+A common cause is that the machine cannot connect to itself.  Please check
+for errors by running:
+
+	ping 1
+
+For more tips, please see
+
+	http://wiki.ros.org/ROS/NetworkSetup
+
+The traceback for the exception was written to the log file
+======>>>>>>>
+fix code terminal: ping 1
+PING 1 (0.0.0.1) 56(84) bytes of data.
+=> loi IP khong chinh xac
+======>>>>>>
+sudo apt install net-tools
+ifconfig
+==
+enp4s0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        ether 50:eb:f6:4c:3a:8b  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 7093  bytes 814452 (814.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7093  bytes 814452 (814.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp3s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.90.103  netmask 255.255.255.0  broadcast 192.168.90.255
+        inet6 fe80::96c8:ebc0:f659:2320  prefixlen 64  scopeid 0x20<link>
+        ether 14:13:33:01:5c:ed  txqueuelen 1000  (Ethernet)
+        RX packets 1126051  bytes 1669063513 (1.6 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 280530  bytes 24019285 (24.0 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+== nhu vay Inet 192.168.90.103
+======>>>>>>
+dat lai bien moi truong
+export ROS_HOSTNAME=192.168.90.103
+echo "export ROS_HOSTNAME=192.168.90.103" >> ~/.bashrc(zshrc)
+======>>> chay lai roslaunch
+
+2.Fix loi khong luu riviz
+sudo chmod a+w /opt/ros/noetic/share/rviz
+sudo chmod a+w /opt/ros/noetic/share/rviz/default.rviz
+
